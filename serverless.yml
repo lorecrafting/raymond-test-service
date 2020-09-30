@@ -67,7 +67,7 @@ functions:
       - sqs:
           arn:
             Fn::GetAtt:
-              - test-queue
+              - QueueName
               - Arn
     # events:
     #   - http:
