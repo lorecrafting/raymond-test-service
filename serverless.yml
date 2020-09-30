@@ -67,7 +67,7 @@ functions:
       - sqs:
           arn:
             Fn::GetAtt:
-              - QueueName
+              - MyQueue
               - Arn
     # events:
     #   - http:
@@ -122,4 +122,4 @@ resources:
     MyQueue:
       Type: "AWS::SQS::Queue"
       Properties:
-        QueueName: "test-queue"
+        QueueName: "MyQueue"
