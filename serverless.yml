@@ -138,11 +138,11 @@ resources:
       Type: "AWS::SQS::Queue"
       Properties:
         QueueName: "test-queue"
-    merchantsTable:
+    MerchantsTable:
       Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
       Properties:
-        TableName: merchantsTable
+        TableName: MerchantsTable
         AttributeDefinitions:
           - AttributeName: merchant_id
           - AttributeType: S
@@ -154,11 +154,11 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-    idempotencyTable:
+    IdempotencyTable:
       Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
       Properties:
-        TableName: idempotencyTable
+        TableName: IdempotencyTable
         AttributeDefinitions:
           - AttributeName: idempotency_id
           - AttributeType: S
@@ -173,11 +173,11 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-    actionsTable:
+    ActionsTable:
       Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
       Properties:
-        TableName: actionsTable
+        TableName: ActionsTable
         AttributeDefinitions:
           - AttributeName: action_id
           - AttributeType: S
