@@ -184,7 +184,7 @@ resources:
           - AttributeName: action_type
           - AttributeType: S
         KeySchema:
-          - AttributeName: merchant_id
+          - AttributeName: action_id
           - KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
