@@ -140,13 +140,16 @@ resources:
         QueueName: "test-queue"
     merchantsTable:
       Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
       Properties:
         TableName: merchantsTable
         AttributeDefinitions:
+          - AttributeName: merchant_id
+          - AttributeType: S
           - AttributeName: merchant_name
             AttributeType: S
         KeySchema:
-          - AttributeName: email
+          - AttributeName: merchant_id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
