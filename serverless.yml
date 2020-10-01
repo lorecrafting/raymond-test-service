@@ -146,8 +146,6 @@ resources:
         AttributeDefinitions:
           - AttributeName: merchant_id
             AttributeType: S
-          - AttributeName: merchant_name
-            AttributeType: S
         KeySchema:
           - AttributeName: merchant_id
             KeyType: HASH
