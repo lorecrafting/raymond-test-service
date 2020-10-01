@@ -160,8 +160,13 @@ resources:
       Properties:
         TableName: idempotencyTable
         AttributeDefinitions:
+          - AttributeName: idempotency_id
+          - AttributeType: S
           - AttributeName: idempotency_key
           - AttributeType: S
+        KeySchema:
+          - AttributeName: idempotency_id
+          - KeyType: HASH
         TimeToLiveSpecification:
           - AttributeName: idempotency_key
           - Enabled: True
