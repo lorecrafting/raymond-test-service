@@ -131,7 +131,7 @@ functions:
 #  Outputs:
 #     NewOutput:
 #       Description: "Description for the output"
-#       Value: "Some output values"
+#       Value: "Some output value"
 resources:
   Resources:
     SQS:
