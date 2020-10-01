@@ -181,8 +181,6 @@ resources:
         AttributeDefinitions:
           - AttributeName: action_id
             AttributeType: S
-          - AttributeName: action_type
-            AttributeType: S
         KeySchema:
           - AttributeName: action_id
             KeyType: HASH
