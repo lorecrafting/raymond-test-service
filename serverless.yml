@@ -138,18 +138,18 @@ resources:
       Type: "AWS::SQS::Queue"
       Properties:
         QueueName: "test-queue"
-      merchantsTable:
-        Type: "AWS::DynamoDB::Table"
-        Properties:
-          TableName: merchantsTable
-          AttributeDefinitions:
-            - AttributeName: merchant_name
-              AttributeType: S
-          KeySchema:
-            - AttributeName: email
-              KeyType: HASH
-          ProvisionedThroughput:
-            ReadCapacityUnits: 1
-            WriteCapacityUnits: 1
+    merchantsTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: merchantsTable
+        AttributeDefinitions:
+          - AttributeName: merchant_name
+            AttributeType: S
+        KeySchema:
+          - AttributeName: email
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
       
 
