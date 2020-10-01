@@ -164,11 +164,13 @@ resources:
           - AttributeType: S
           - AttributeName: idempotency_key
           - AttributeType: S
+          - AttributeName: ttl
+          - AttributeType: N
         KeySchema:
           - AttributeName: idempotency_id
           - KeyType: HASH
         TimeToLiveSpecification:
-          - AttributeName: idempotency_key
+          - AttributeName: ttl
           - Enabled: True
         ProvisionedThroughput:
           ReadCapacityUnits: 1
