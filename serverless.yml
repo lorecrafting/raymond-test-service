@@ -145,9 +145,9 @@ resources:
         TableName: MerchantsTable
         AttributeDefinitions:
           - AttributeName: merchant_id
-          - AttributeType: S
+            AttributeType: S
           - AttributeName: merchant_name
-          - AttributeType: S
+            AttributeType: S
         KeySchema:
           - AttributeName: merchant_id
             KeyType: HASH
@@ -161,17 +161,17 @@ resources:
         TableName: IdempotencyTable
         AttributeDefinitions:
           - AttributeName: idempotency_id
-          - AttributeType: S
+            AttributeType: S
           - AttributeName: idempotency_key
-          - AttributeType: S
+            AttributeType: S
           - AttributeName: ttl
-          - AttributeType: N
+            AttributeType: N
         KeySchema:
           - AttributeName: idempotency_id
             KeyType: HASH
         TimeToLiveSpecification:
           - AttributeName: ttl
-          - Enabled: True
+            Enabled: True
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
@@ -182,9 +182,9 @@ resources:
         TableName: ActionsTable
         AttributeDefinitions:
           - AttributeName: action_id
-          - AttributeType: S
+            AttributeType: S
           - AttributeName: action_type
-          - AttributeType: S
+            AttributeType: S
         KeySchema:
           - AttributeName: action_id
             KeyType: HASH
