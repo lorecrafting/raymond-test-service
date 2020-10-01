@@ -160,10 +160,6 @@ resources:
         AttributeDefinitions:
           - AttributeName: idempotency_id
             AttributeType: S
-          - AttributeName: idempotency_key
-            AttributeType: S
-          - AttributeName: ttl
-            AttributeType: N
         KeySchema:
           - AttributeName: idempotency_id
             KeyType: HASH
