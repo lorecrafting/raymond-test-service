@@ -145,9 +145,9 @@ resources:
         TableName: merchantsTable
         AttributeDefinitions:
           - AttributeName: merchant_id
-          - AttributeType: S
+          - AttributeType: s
           - AttributeName: merchant_name
-            AttributeType: S
+            AttributeType: s
         KeySchema:
           - AttributeName: merchant_id
             KeyType: HASH
