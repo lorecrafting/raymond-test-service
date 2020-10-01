@@ -170,8 +170,8 @@ resources:
           - AttributeName: idempotency_id
             KeyType: HASH
         TimeToLiveSpecification:
-            AttributeName: ttl
-            Enabled: True
+          Enabled: True
+          AttributeName: ttl
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
