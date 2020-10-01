@@ -154,5 +154,19 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+      idempotencyTable:
+        Type: "AWS::DynamoDB::Table"
+        DeletionPolicy: Retain
+        Properties:
+          TableName: idempotencyTable
+          AttributeDefinitions:
+            - AttributeName: idempotency_key
+            - AttributeType: S
+          TimeToLiveSpecification:
+            - AttributeName: idempotency_key
+            - Enabled: True
+          ProvisionedThroughput:
+            ReadCapacityUnits: 1
+            WriteCapacityUnits: 1
       
 
