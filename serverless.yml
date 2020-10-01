@@ -60,6 +60,14 @@ provider:
         - "Fn::GetAtt": [MerchantsTable, Arn]
         - "Fn::GetAtt": [IdempotencyTable, Arn]
         - "Fn::GetAtt": [ActionsTable, Arn]
+    - Effect: Allow
+      Action:
+        - sqs:SendMessage
+        - sqs:GetQueueUrl
+        - sqs:ListQueues
+      Resource:
+        - "Fn::GetAtt": [SQS, Arn]
+
 
 # you can define service wide environment variables here
 #  environment:
