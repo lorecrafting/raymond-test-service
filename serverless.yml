@@ -57,7 +57,7 @@ iamRoleStatements:
     # Restrict our IAM role permissions to
     # the specific table for the stage
     Resource:
-      - "Fn::GetAtt": [ merchantsTable, Arn ]
+      - "Fn::GetAtt": [merchantsTable, Arn]
 
 # you can define service wide environment variables here
 #  environment:
@@ -75,9 +75,9 @@ iamRoleStatements:
 functions:
   hello:
     handler: handler.hello
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
+    #    The following are a few example events you can configure
+    #    NOTE: Please make sure to change your handler code to work with those events
+    #    Check the event documentation for details
     events:
       - sqs:
           arn:
@@ -191,5 +191,3 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-      
-
