@@ -58,6 +58,8 @@ provider:
       # the specific table for the stage
       Resource:
         - "Fn::GetAtt": [MerchantsTable, Arn]
+        - "Fn::GetAtt": [IdempotencyTable, Arn]
+        - "Fn::GetAtt": [ActionsTable, Arn]
 
 # you can define service wide environment variables here
 #  environment:
