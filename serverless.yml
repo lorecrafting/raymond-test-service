@@ -88,6 +88,7 @@ functions:
     #    The following are a few example events you can configure
     #    NOTE: Please make sure to change your handler code to work with those events
     #    Check the event documentation for details
+    provisionedConcurrency: 5
     events:
       - sqs:
           arn:
@@ -149,14 +150,14 @@ resources:
       Properties:
         QueueName: "test-queue.fifo"
         FifoQueue: True
-        VisibilityTimeout: 30
+        VisibilityTimeout: 30 # should be 6x lambda timeout
         MessageRetentionPeriod: 60
         RedrivePolicy:
           deadLetterTargetArn:
             "Fn::GetAtt":
               - ReceiverDeadLetterQueue
               - Arn
-          maxReceiveCount: 3
+          maxReceiveCount: 5
     ReceiverDeadLetterQueue:
       Type: "AWS::SQS::Queue"
       Properties:
