@@ -147,7 +147,7 @@ resources:
     SQS:
       Type: "AWS::SQS::Queue"
       Properties:
-        QueueName: "test-queue"
+        QueueName: "test-queue.fifo"
         VisibilityTimeout: 30
         MessageRetentionPeriod: 60
         RedrivePolicy:
@@ -155,11 +155,11 @@ resources:
             "Fn::GetAtt":
               - ReceiverDeadLetterQueue
               - Arn
-          maxReceiveCount: 1
+          maxReceiveCount: 3
     ReceiverDeadLetterQueue:
       Type: "AWS::SQS::Queue"
       Properties:
-        QueueName: "ReceiverDLQ"
+        QueueName: "ReceiverDLQ.fifo"
         MessageRetentionPeriod: 1209600 # 14 days in seconds
     MerchantsTable:
       Type: "AWS::DynamoDB::Table"
