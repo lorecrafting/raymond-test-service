@@ -144,7 +144,7 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
-# from serverless-api-gateway-proxy plugin
+# from serverless-api-gateway-proxy plugni
 # custom:
 #   apiGatewayServiceProxies:
 #     - sqs:
