@@ -220,5 +220,3 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
 
-plugins:
-  - serverless-apigateway-service-proxy
