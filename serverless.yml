@@ -66,7 +66,7 @@ provider:
         - sqs:GetQueueUrl
         - sqs:ListQueues
       Resource:
-        - "Fn::GetAtt": [SQS, Arn]
+        - "Fn::GetAtt": [PrimaryQueue, Arn]
 
 
 # you can define service wide environment variables here
@@ -93,7 +93,7 @@ functions:
       - sqs:
           arn:
             Fn::GetAtt:
-              - SQS
+              - PrimaryQueue
               - Arn
     # events:
     #   - http:
@@ -149,12 +149,12 @@ custom:
     - sqs:
       path: /sqs
       method: post
-      queueName: { 'Fn::GetAtt': ['SQS', 'QueueName'] }
+      queueName: { 'Fn::GetAtt': ['PrimaryQueue', 'QueueName'] }
       cors: true
 
 resources:
   Resources:
-    SQS:
+    PrimaryQueue:
       Type: "AWS::SQS::Queue"
       Properties:
         QueueName: "test-queue.fifo"
