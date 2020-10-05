@@ -162,12 +162,12 @@ resources:
         FifoQueue: True
         VisibilityTimeout: 30 # should be 6x lambda timeout
         MessageRetentionPeriod: 60
-        # RedrivePolicy:
-        #   deadLetterTargetArn:
-        #     "Fn::GetAtt":
-        #       - ReceiverDeadLetterQueue
-        #       - Arn
-        #   maxReceiveCount: 5
+        RedrivePolicy:
+          deadLetterTargetArn:
+            "Fn::GetAtt":
+              - ReceiverDeadLetterQueue
+              - Arn
+          maxReceiveCount: 5
     ReceiverDeadLetterQueue:
       Type: "AWS::SQS::Queue"
       Properties:
