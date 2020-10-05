@@ -143,6 +143,15 @@ functions:
 #     NewOutput:
 #       Description: "Description for the output"
 #       Value: "Some output value"
+
+custom:
+  apiGatewayServiceProxies:
+    - sqs:
+      path: /sqs
+      method: post
+      queueName: { 'Fn::GetAtt': ['SQS', 'QueueName'] }
+      cors: true
+
 resources:
   Resources:
     SQS:
@@ -209,3 +218,6 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+
+plugins:
+  - serverless-apigateway-service-proxy
