@@ -144,13 +144,13 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
-custom:
-  apiGatewayServiceProxies:
-    - sqs:
-      path: /sqs
-      method: post
-      queueName: { 'Fn::GetAtt': ['PrimaryQueue', 'QueueName'] }
-      cors: true
+# custom:
+#   apiGatewayServiceProxies:
+#     - sqs:
+#       path: /sqs
+#       method: post
+#       queueName: { 'Fn::GetAtt': ['PrimaryQueue', 'QueueName'] }
+#       cors: true
 
 resources:
   Resources:
