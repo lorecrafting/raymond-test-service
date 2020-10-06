@@ -155,6 +155,11 @@ functions:
 
 resources:
   Resources:
+    APIGateway:
+      Properties:
+        Description: API Endpoint to receive JSON payloads and queue in SQS
+        Name: APIGateway
+      Type: AWS::ApiGateway::RestApi
     PrimaryQueue:
       Type: "AWS::SQS::Queue"
       Properties:
