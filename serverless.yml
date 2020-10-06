@@ -133,25 +133,25 @@ functions:
 #      variable2: value2
 
 # you can add CloudFormation resource templates here
-resources:
- Resources:
-   NewResource:
-     Type: AWS::S3::Bucket
-     Properties:
-       BucketName: my-new-bucket
- Outputs:
-    NewOutput:
-      Description: "Description for the output"
-      Value: "Some output value"
+# resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"
 
-from serverless-api-gateway-proxy plugnix
-custom:
-  apiGatewayServiceProxies:
-    - sqs:
-      path: /sqs
-      method: post
-      queueName: { 'Fn::GetAtt': ['PrimaryQueue', 'QueueName'] }
-      cors: true
+# from serverless-api-gateway-proxy plugnix
+# custom:
+#   apiGatewayServiceProxies:
+#     - sqs:
+#       path: /sqs
+#       method: post
+#       queueName: { 'Fn::GetAtt': ['PrimaryQueue', 'QueueName'] }
+#       cors: true
 
 resources:
   Resources:
