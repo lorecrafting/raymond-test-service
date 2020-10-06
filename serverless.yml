@@ -89,12 +89,12 @@ functions:
     #    NOTE: Please make sure to change your handler code to work with those events
     #    Check the event documentation for details
     provisionedConcurrency: 5
-    events:
-      - sqs:
-          arn:
-            Fn::GetAtt:
-              - PrimaryQueue
-              - Arn
+    # events:
+    #   - sqs:
+    #       arn:
+    #         Fn::GetAtt:
+    #           - PrimaryQueue
+    #           - Arn
     # events:
     #   - http:
     #       path: hello
@@ -153,70 +153,70 @@ functions:
 #       queueName: { 'Fn::GetAtt': ['PrimaryQueue', 'QueueName'] }
 #       cors: true
 
-resources:
-  Resources:
-    PrimaryQueue:
-      Type: "AWS::SQS::Queue"
-      Properties:
-        QueueName: "test-queue.fifo"
-        FifoQueue: True
-        VisibilityTimeout: 30 # should be 6x lambda timeout
-        MessageRetentionPeriod: 60
-        RedrivePolicy:
-          deadLetterTargetArn:
-            "Fn::GetAtt":
-              - ReceiverDeadLetterQueue
-              - Arn
-          maxReceiveCount: 5
-    ReceiverDeadLetterQueue:
-      Type: "AWS::SQS::Queue"
-      Properties:
-        QueueName: "ReceiverDLQ.fifo"
-        FifoQueue: True
-        MessageRetentionPeriod: 1209600 # 14 days in seconds
-    MerchantsTable:
-      Type: "AWS::DynamoDB::Table"
-      DeletionPolicy: Retain
-      Properties:
-        TableName: MerchantsTable
-        AttributeDefinitions:
-          - AttributeName: merchant_id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: merchant_id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-    IdempotencyTable:
-      Type: "AWS::DynamoDB::Table"
-      DeletionPolicy: Retain
-      Properties:
-        TableName: IdempotencyTable
-        AttributeDefinitions:
-          - AttributeName: idempotency_id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: idempotency_id
-            KeyType: HASH
-        TimeToLiveSpecification:
-          Enabled: True
-          AttributeName: ttl
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
-    ActionsTable:
-      Type: "AWS::DynamoDB::Table"
-      DeletionPolicy: Retain
-      Properties:
-        TableName: ActionsTable
-        AttributeDefinitions:
-          - AttributeName: action_id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: action_id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+# resources:
+#   Resources:
+#     PrimaryQueue:
+#       Type: "AWS::SQS::Queue"
+#       Properties:
+#         QueueName: "test-queue.fifo"
+#         FifoQueue: True
+#         VisibilityTimeout: 30 # should be 6x lambda timeout
+#         MessageRetentionPeriod: 60
+#         RedrivePolicy:
+#           deadLetterTargetArn:
+#             "Fn::GetAtt":
+#               - ReceiverDeadLetterQueue
+#               - Arn
+#           maxReceiveCount: 5
+#     ReceiverDeadLetterQueue:
+#       Type: "AWS::SQS::Queue"
+#       Properties:
+#         QueueName: "ReceiverDLQ.fifo"
+#         FifoQueue: True
+#         MessageRetentionPeriod: 1209600 # 14 days in seconds
+#     MerchantsTable:
+#       Type: "AWS::DynamoDB::Table"
+#       DeletionPolicy: Retain
+#       Properties:
+#         TableName: MerchantsTable
+#         AttributeDefinitions:
+#           - AttributeName: merchant_id
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: merchant_id
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 1
+#           WriteCapacityUnits: 1
+#     IdempotencyTable:
+#       Type: "AWS::DynamoDB::Table"
+#       DeletionPolicy: Retain
+#       Properties:
+#         TableName: IdempotencyTable
+#         AttributeDefinitions:
+#           - AttributeName: idempotency_id
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: idempotency_id
+#             KeyType: HASH
+#         TimeToLiveSpecification:
+#           Enabled: True
+#           AttributeName: ttl
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 1
+#           WriteCapacityUnits: 1
+#     ActionsTable:
+#       Type: "AWS::DynamoDB::Table"
+#       DeletionPolicy: Retain
+#       Properties:
+#         TableName: ActionsTable
+#         AttributeDefinitions:
+#           - AttributeName: action_id
+#             AttributeType: S
+#         KeySchema:
+#           - AttributeName: action_id
+#             KeyType: HASH
+#         ProvisionedThroughput:
+#           ReadCapacityUnits: 1
+#           WriteCapacityUnits: 1
 
