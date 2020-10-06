@@ -220,6 +220,36 @@ resources:
         Queues:
           - !Ref 'PrimaryQueue'
       Type: AWS::SQS::QueuePolicy
+    PostMethod:
+      Properties:
+        AuthorizationType: NONE
+        HttpMethod: POST
+        Integration:
+          Credentials: !GetAtt 'APIGatewayRole.Arn'
+          IntegrationHttpMethod: POST
+          IntegrationResponses:
+            - StatusCode: '200'
+          PassthroughBehavior: NEVER
+          RequestParameters:
+            integration.request.header.Content-Type: '''application/x-www-form-urlencoded'''
+          RequestTemplates:
+            application/json: Action=SendMessage&MessageBody=$input.body
+          Type: AWS
+          Uri: !Join
+            - ''
+            - - 'arn:aws:apigateway:'
+              - !Ref 'AWS::Region'
+              - :sqs:path/
+              - !Ref 'AWS::AccountId'
+              - /
+              - !Ref 'queueName'
+        MethodResponses:
+          - ResponseModels:
+              application/json: Empty
+            StatusCode: '200'
+        ResourceId: !Ref 'enqueueResource'
+        RestApiId: !Ref 'APIGateway'
+      Type: AWS::ApiGateway::Method
     MerchantsTable:
       Type: "AWS::DynamoDB::Table"
       DeletionPolicy: Retain
